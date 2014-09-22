@@ -2,7 +2,7 @@
 project(PDFWriter)
 
 # Add library.
-add_library(PDFWriter
+add_library(PDFWriter SHARED
 #sources
 AbstractContentContext.cpp
 AbstractWrittenFont.cpp

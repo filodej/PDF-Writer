@@ -44,6 +44,7 @@ class PDFPage;
 class IDocumentContextExtender;
 class IPageEmbedInFormCommand;
 class IPDFParserExtender;
+class IPDFPageCopyExtender;
 class ICategoryServicesCommand;
 
 
@@ -177,6 +178,8 @@ public:
 
 	// Extendibility
 	void SetParserExtender(IPDFParserExtender* inParserExtender);
+	void SetPageCopyExtender(IPDFPageCopyExtender* inPageCopyExtender);
+
 private:
 
 	ObjectsContext* mObjectsContext;
@@ -190,7 +193,7 @@ private:
     bool mParserOwned;
 	ObjectIDTypeToObjectIDTypeMap mSourceToTarget;
 	PDFDictionary* mWrittenPage;
-
+	IPDFPageCopyExtender* mPageCopyExtender;
 
 	PDFRectangle DeterminePageBox(PDFDictionary* inDictionary,EPDFPageBox inPageBoxType);
 	PDFHummus::EStatusCode WritePageContentToSingleStream(IByteWriter* inTargetStream,PDFDictionary* inPageObject);

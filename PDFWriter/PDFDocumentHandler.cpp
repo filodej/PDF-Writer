@@ -47,6 +47,7 @@
 #include "IResourceWritingTask.h"
 #include "IFormEndWritingTask.h"
 #include "PDFPageInput.h"
+#include "IPDFPageCopyExtender.h"
 
 using namespace PDFHummus;
 
@@ -57,7 +58,7 @@ PDFDocumentHandler::PDFDocumentHandler(void)
 	mWrittenPage = NULL;
     mParser = NULL;
     mParserOwned = false;
-
+	mPageCopyExtender = NULL;
 }
 
 PDFDocumentHandler::~PDFDocumentHandler(void)
@@ -1089,16 +1090,42 @@ EStatusCode PDFDocumentHandler::WritePDFStreamInputToContentContext(PageContentC
 	
 	do
 	{
-		inContentContext->StartAStreamIfRequired();
-
-		status = WritePDFStreamInputToStream(inContentContext->GetCurrentPageContentStream()->GetWriteStream(),inContentSource);
-		if(status != PDFHummus::eSuccess)
+		if ( mPageCopyExtender )
 		{
-			TRACE_LOG("PDFDocumentHandler::WritePDFStreamInputToContentContext, failed to write content stream from page input to target page");
-			break;
-		}
+			IByteReader* streamReader = mParser->CreateInputStreamReader(inContentSource);
 
-		status = inContentContext->FinalizeCurrentStream();
+			if(!streamReader)
+			{
+				status = PDFHummus::eFailure;
+				TRACE_LOG("PDFDocumentHandler::WritePDFStreamInputToContentContext, failed to create reader for IPageCopyExtender");
+				break;
+			}
+
+			mPDFStream->SetPosition(inContentSource->GetStreamContentStart());
+
+			status = mPageCopyExtender->CopyContent( inContentContext, streamReader );
+
+			delete streamReader;
+
+			if(status != PDFHummus::eSuccess)
+			{
+				TRACE_LOG("PDFDocumentHandler::WritePDFStreamInputToContentContext, IPageCopyExtender failed to copy page content");
+				break;
+			}
+		}
+		else
+		{
+			inContentContext->StartAStreamIfRequired();
+
+			status = WritePDFStreamInputToStream(inContentContext->GetCurrentPageContentStream()->GetWriteStream(),inContentSource);
+			if(status != PDFHummus::eSuccess)
+			{
+				TRACE_LOG("PDFDocumentHandler::WritePDFStreamInputToContentContext, failed to write content stream from page input to target page");
+				break;
+			}
+
+			status = inContentContext->FinalizeCurrentStream();
+		}
 
 	}while(false);
 
@@ -1985,6 +2012,11 @@ EStatusCode PDFDocumentHandler::CopyNewObjectsForDirectObject(const ObjectIDType
 void PDFDocumentHandler::SetParserExtender(IPDFParserExtender* inParserExtender)
 {
 	mParser->SetParserExtender(inParserExtender);
+}
+
+void PDFDocumentHandler::SetPageCopyExtender(IPDFPageCopyExtender* inPageCopyExtender)
+{
+	mPageCopyExtender = inPageCopyExtender;
 }
 
 void PDFDocumentHandler::ReplaceSourceObjects(const ObjectIDTypeToObjectIDTypeMap& inSourceObjectsToNewTargetObjects)

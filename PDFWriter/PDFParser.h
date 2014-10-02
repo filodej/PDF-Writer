@@ -38,6 +38,7 @@ class PDFStreamInput;
 class PDFDictionary;
 class PDFName;
 class IPDFParserExtender;
+class PageContentContext;
 
 typedef std::pair<PDFHummus::EStatusCode,IByteReader*> EStatusCodeAndIByteReader;
 
@@ -134,6 +135,9 @@ public:
 	// encryption is supported if there's an extender that supports it in the parser
 	bool IsEncryptionSupported();
 
+	// content transfer is supported if there's an extender that supports it in the parser
+	bool IsContentTransferSupported();
+
 	// set extender for parser, to enhance parsing capabilities
 	void SetParserExtender(IPDFParserExtender* inParserExtender);
 
@@ -144,6 +148,8 @@ public:
     
     IByteReaderWithPosition* GetParserStream();
     
+	PDFHummus::EStatusCode TransferPageContent( PageContentContext* inContentContext,PDFStreamInput* inContentSource );
+
 private:
 	PDFObjectParser mObjectParser;
 	IByteReaderWithPosition* mStream;

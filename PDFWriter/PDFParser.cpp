@@ -2026,6 +2026,47 @@ EStatusCode PDFParser::StartStateFileParsing(IByteReaderWithPosition* inSourceSt
 	return status;	
 }
 
+EStatusCode PDFParser::TransferPageContent( PageContentContext* inContentContext,PDFStreamInput* inContentSource )
+{
+	EStatusCode status;
+
+	do
+	{
+		if ( !IsContentTransferSupported() )
+		{
+			status = PDFHummus::eFailure;
+			TRACE_LOG("PDFParser::TransferPageContent, content transfer is not supported");
+			break;
+		}
+
+		IByteReader* streamReader = CreateInputStreamReader(inContentSource);
+
+		if(!streamReader)
+		{
+			status = PDFHummus::eFailure;
+			TRACE_LOG("PDFParser::TransferPageContent, failed to create reader for extender");
+			break;
+		}
+
+		mStream->SetPosition(inContentSource->GetStreamContentStart());
+
+		status = mParserExtender->TransferContent( inContentContext, streamReader ) 
+			? PDFHummus::eSuccess
+			: PDFHummus::eFailure;
+
+		delete streamReader;
+		
+		if(status != PDFHummus::eSuccess)
+		{
+			TRACE_LOG("PDFParser::TransferPageContent, extender content parsing failed");
+			break;
+		}
+
+	}while(false);
+
+	return status;
+}
+
 bool PDFParser::IsEncrypted()
 {
 	PDFObjectCastPtr<PDFDictionary> encryptionDictionary(QueryDictionaryObject(mTrailer.GetPtr(),"Encrypt"));
@@ -2040,6 +2081,11 @@ void PDFParser::SetParserExtender(IPDFParserExtender* inParserExtender)
 bool PDFParser::IsEncryptionSupported()
 {
 	return mParserExtender && mParserExtender->DoesSupportEncryption();
+}
+
+bool PDFParser::IsContentTransferSupported()
+{
+	return mParserExtender && mParserExtender->DoesSupportContentTransfer();
 }
 
 ObjectIDType PDFParser::GetXrefSize()

@@ -1,6 +1,8 @@
 # Set the name of the project.
 project(PDFWriter)
 
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -fPIC -shared")
+
 # Add library.
 add_library(PDFWriter SHARED
 #sources

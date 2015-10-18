@@ -21,6 +21,8 @@ include_directories(${FREETYPE_INCLUDE_DIRS})
 pkg_check_modules(Z REQUIRED zlib)
 include_directories(${Z_INCLUDE_DIRS})
 
+add_definitions("${EXTERNAL_DEFINITIONS}")
+
 # Add targets.
 add_subdirectory(PDFWriter)
 add_subdirectory(PDFWriterTestPlayground)

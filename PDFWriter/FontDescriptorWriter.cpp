@@ -96,7 +96,7 @@ void FontDescriptorWriter::WriteFontDescriptor(	ObjectIDType inFontDescriptorObj
 	// FontBBox
 	fontDescriptorDictionary->WriteKey(scFontBBox);
 	fontDescriptorDictionary->WriteRectangleValue(
-											PDFRectangle(
+											PDFRect(
 												inFontInfo->GetInPDFMeasurements((*inFontInfo)->bbox.xMin),
 												inFontInfo->GetInPDFMeasurements((*inFontInfo)->bbox.yMin),
 												inFontInfo->GetInPDFMeasurements((*inFontInfo)->bbox.xMax),

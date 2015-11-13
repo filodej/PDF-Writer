@@ -102,7 +102,7 @@ EStatusCode TiffSpecialsTest::CreatePageForImageAndRelease(PDFWriter& inpdfWrite
 	do
 	{
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = inpdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)
@@ -168,7 +168,7 @@ EStatusCode TiffSpecialsTest::CreateBlackAndWhiteMaskImage(const TestConfigurati
 		}
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = inpdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)
@@ -281,7 +281,7 @@ EStatusCode TiffSpecialsTest::CreateBiLevelGrayScales(const TestConfiguration& i
 
 		// start page
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = inpdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)

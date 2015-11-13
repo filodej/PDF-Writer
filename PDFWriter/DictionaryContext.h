@@ -49,7 +49,7 @@ public:
 	void WriteObjectReferenceValue(const ObjectReference& inObjectReference);
 	void WriteObjectReferenceValue(ObjectIDType inObjectID,unsigned long inGenerationNumber);
     void WriteNewObjectReferenceValue(ObjectIDType inObjectID);
-	void WriteRectangleValue(const PDFRectangle& inRectangle);
+	void WriteRectangleValue(const PDFRect& inRectangle);
 	void WriteDoubleValue(double inValue);
 	void WriteBooleanValue(bool inValue);
 

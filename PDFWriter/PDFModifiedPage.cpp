@@ -52,7 +52,7 @@ AbstractContentContext* PDFModifiedPage::StartContentContext()
 {
 	if(!mCurrentContext)
 	{
-		PDFRectangle mediaBox = PDFPageInput(&mWriter->GetModifiedFileParser(),mWriter->GetModifiedFileParser().ParsePage(mPageIndex)).GetMediaBox();
+		PDFRect mediaBox = PDFPageInput(&mWriter->GetModifiedFileParser(),mWriter->GetModifiedFileParser().ParsePage(mPageIndex)).GetMediaBox();
 		mCurrentContext = mWriter->StartFormXObject(mediaBox);
 	}
 	return mCurrentContext->GetContentContext();

@@ -59,7 +59,7 @@ EStatusCode ImagesAndFormsForwardReferenceTest::Run(const TestConfiguration& inT
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)
@@ -155,7 +155,7 @@ EStatusCode ImagesAndFormsForwardReferenceTest::Run(const TestConfiguration& inT
 
 
 		// define an xobject form to draw a 200X100 points red rectangle
-		PDFFormXObject* xobjectForm = pdfWriter.StartFormXObject(PDFRectangle(0,0,200,100),simpleFormXObjectID);
+		PDFFormXObject* xobjectForm = pdfWriter.StartFormXObject(PDFRect(0,0,200,100),simpleFormXObjectID);
 
 		XObjectContentContext* xobjectContentContext = xobjectForm->GetContentContext();
 		xobjectContentContext->q();

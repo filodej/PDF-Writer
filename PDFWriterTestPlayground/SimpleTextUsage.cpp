@@ -136,7 +136,7 @@ EStatusCode SimpleTextUsage::RunCFFTest(const TestConfiguration& inTestConfigura
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == contentContext)
@@ -242,7 +242,7 @@ EStatusCode SimpleTextUsage::RunTrueTypeTest(const TestConfiguration& inTestConf
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == contentContext)
@@ -320,7 +320,7 @@ EStatusCode SimpleTextUsage::RunType1Test(const TestConfiguration& inTestConfigu
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == contentContext)
@@ -400,7 +400,7 @@ EStatusCode SimpleTextUsage::RunNoTextTest(const TestConfiguration& inTestConfig
 		}
         
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
         
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == contentContext)

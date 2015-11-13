@@ -56,7 +56,7 @@ EStatusCode TestMeasurementsTest::Run(const TestConfiguration& inTestConfigurati
 		}
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 		
 		PageContentContext* cxt = pdfWriter.StartPageContentContext(page);
 		PDFUsedFont* arialFont = pdfWriter.GetFontForFile(

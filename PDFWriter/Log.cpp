@@ -27,6 +27,8 @@
 #include <share.h>
 #endif
 
+#include <iostream>
+
 void STATIC_LogEntryToFile(Log* inThis,const Byte* inMessage, LongBufferSizeType inMessageSize)
 {
 	inThis->LogEntryToFile(inMessage,inMessageSize);
@@ -92,6 +94,7 @@ Log::~Log(void)
 void Log::LogEntry(const std::string& inMessage)
 {
 	LogEntry((const Byte*)inMessage.c_str(), inMessage.length());
+	std::cout << inMessage << std::endl;
 }
 
 void Log::LogEntry(const Byte* inMessage, LongBufferSizeType inMessageSize)

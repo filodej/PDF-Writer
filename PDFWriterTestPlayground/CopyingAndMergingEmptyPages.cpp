@@ -106,7 +106,7 @@ EStatusCode CopyingAndMergingEmptyPages::PrepareSampleEmptyPDF(const TestConfigu
         
         
         PDFPage* page = new PDFPage();
-        page->SetMediaBox(PDFRectangle(0,0,595,842));
+        page->SetMediaBox(PDFRect(0,0,595,842));
         
         status = pdfWriter.WritePageAndRelease(page);
         if(status != PDFHummus::eSuccess)
@@ -151,7 +151,7 @@ PDFHummus::EStatusCode CopyingAndMergingEmptyPages::CreateFormFromEmptyPage(cons
 		}
         
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
         
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
         
@@ -253,7 +253,7 @@ PDFHummus::EStatusCode CopyingAndMergingEmptyPages::MergeEmptyPageToPage(const T
 			break;
         
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
         
 		PDFUsedFont* font = pdfWriter.GetFontForFile(RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/fonts/arial.ttf"));
 		if(!font)
@@ -327,7 +327,7 @@ PDFHummus::EStatusCode CopyingAndMergingEmptyPages::MergeEmptyPageToForm(const T
         // in this test we will merge 2 pages into a PDF form, and place it twice, forming a 2X2 design. amazing.
         
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
         
         
         copyingContext = pdfWriter.CreatePDFCopyingContext(RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,inEmptyFileName));
@@ -335,7 +335,7 @@ PDFHummus::EStatusCode CopyingAndMergingEmptyPages::MergeEmptyPageToForm(const T
             break;
         
         // create form for two pages.
-        PDFFormXObject* newFormXObject = pdfWriter.StartFormXObject(PDFRectangle(0,0,297.5,842));
+        PDFFormXObject* newFormXObject = pdfWriter.StartFormXObject(PDFRect(0,0,297.5,842));
         
 		XObjectContentContext* xobjectContentContext = newFormXObject->GetContentContext();
         

@@ -99,15 +99,15 @@ unsigned int PDFPageInput::GetRotate()
 	return result;
 }
 
-PDFRectangle PDFPageInput::GetMediaBox()
+PDFRect PDFPageInput::GetMediaBox()
 {
-    PDFRectangle result;
+    PDFRect result;
     
     PDFObjectCastPtr<PDFArray> mediaBox(QueryInheritedValue(mPageObject.GetPtr(),"MediaBox"));
     if(!mediaBox || mediaBox->GetLength() != 4)
     {
         TRACE_LOG("PDFPageInput::GetMediaBox, Exception, pdf page does not have correct media box. defaulting to A4");
-        result = PDFRectangle(0,0,595,842);
+        result = PDFRect(0,0,595,842);
     }
     else
     {
@@ -117,9 +117,9 @@ PDFRectangle PDFPageInput::GetMediaBox()
     return result;
 }
 
-PDFRectangle PDFPageInput::GetCropBox()
+PDFRect PDFPageInput::GetCropBox()
 {
-    PDFRectangle result;
+    PDFRect result;
     PDFObjectCastPtr<PDFArray> cropBox(QueryInheritedValue(mPageObject.GetPtr(),"CropBox"));
     
     if(!cropBox || cropBox->GetLength() != 4)
@@ -129,14 +129,14 @@ PDFRectangle PDFPageInput::GetCropBox()
     return result;
 }
 
-PDFRectangle PDFPageInput::GetTrimBox()
+PDFRect PDFPageInput::GetTrimBox()
 {
     return GetBoxAndDefaultWithCrop("TrimBox");
 }
 
-PDFRectangle PDFPageInput::GetBoxAndDefaultWithCrop(const std::string& inBoxName)
+PDFRect PDFPageInput::GetBoxAndDefaultWithCrop(const std::string& inBoxName)
 {
-    PDFRectangle result;
+    PDFRect result;
     PDFObjectCastPtr<PDFArray> aBox(QueryInheritedValue(mPageObject.GetPtr(),inBoxName));
     
     if(!aBox || aBox->GetLength() != 4)
@@ -146,12 +146,12 @@ PDFRectangle PDFPageInput::GetBoxAndDefaultWithCrop(const std::string& inBoxName
     return result;        
 }
 
-PDFRectangle PDFPageInput::GetBleedBox()
+PDFRect PDFPageInput::GetBleedBox()
 {
     return GetBoxAndDefaultWithCrop("BleedBox");
 }
 
-PDFRectangle PDFPageInput::GetArtBox()
+PDFRect PDFPageInput::GetArtBox()
 {
     return GetBoxAndDefaultWithCrop("ArtBox");
 }
@@ -175,7 +175,7 @@ PDFObject* PDFPageInput::QueryInheritedValue(PDFDictionary* inDictionary,const s
 		return NULL;
 }
 
-void PDFPageInput::SetPDFRectangleFromPDFArray(PDFArray* inPDFArray,PDFRectangle& outPDFRectangle)
+void PDFPageInput::SetPDFRectangleFromPDFArray(PDFArray* inPDFArray,PDFRect& outPDFRectangle)
 {
 	RefCountPtr<PDFObject> lowerLeftX(inPDFArray->QueryObject(0));
 	RefCountPtr<PDFObject> lowerLeftY(inPDFArray->QueryObject(1));

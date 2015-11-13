@@ -1,5 +1,5 @@
 /*
-   Source File : PDFRectangle.h
+   Source File : PDFRect.h
 
 
    Copyright 2011 Gal Kahana PDFWriter
@@ -20,17 +20,17 @@
 */
 #pragma once
 
-class PDFRectangle
+class PDFRect
 {
 public:
-	PDFRectangle(void);
-	~PDFRectangle(void);
+	PDFRect(void);
+	~PDFRect(void);
 
-	PDFRectangle(double inLowerLeftX, double inLowerLeftY, double inUpperRightX, double inUpperRightY);
-	PDFRectangle(const PDFRectangle& inOther);
+	PDFRect(double inLowerLeftX, double inLowerLeftY, double inUpperRightX, double inUpperRightY);
+	PDFRect(const PDFRect& inOther);
     
-    bool operator==(const PDFRectangle& inOther) const;
-    bool operator!=(const PDFRectangle& inOther) const;
+    bool operator==(const PDFRect& inOther) const;
+    bool operator!=(const PDFRect& inOther) const;
     
 	double LowerLeftX;
 	double LowerLeftY;

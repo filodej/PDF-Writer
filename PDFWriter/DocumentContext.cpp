@@ -582,7 +582,7 @@ EStatusCodeAndObjectIDType DocumentContext::WritePage(PDFPage* inPage)
     }
 
     // Crop Box
-    PDFRectangle cropBox;
+    PDFRect cropBox;
     if(inPage->GetCropBox().first && (inPage->GetCropBox().second != inPage->GetMediaBox()))
     {
         pageContext->WriteKey(scCropBox);
@@ -789,7 +789,7 @@ static const std::string scMatrix = "Matrix";
 PDFTiledPattern* DocumentContext::StartTiledPattern(
 	int inPaintType,
 	int inTilingType,
-	const PDFRectangle& inBoundingBox,
+	const PDFRect& inBoundingBox,
 	double inXStep,
 	double inYStep,
 	ObjectIDType inObjectID,
@@ -857,7 +857,7 @@ PDFTiledPattern* DocumentContext::StartTiledPattern(
 
 PDFTiledPattern* DocumentContext::StartTiledPattern(int inPaintType,
 	int inTilingType,
-	const PDFRectangle& inBoundingBox,
+	const PDFRect& inBoundingBox,
 	double inXStep,
 	double inYStep,
 	const double* inMatrix)
@@ -877,7 +877,7 @@ static const std::string scXObject = "XObject";
 static const std::string scSubType = "Subtype";
 static const std::string scForm = "Form";
 static const std::string scFormType = "FormType";
-PDFFormXObject* DocumentContext::StartFormXObject(const PDFRectangle& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix)
+PDFFormXObject* DocumentContext::StartFormXObject(const PDFRect& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix)
 {
 	PDFFormXObject* aFormXObject = NULL;
 	do
@@ -939,7 +939,7 @@ PDFFormXObject* DocumentContext::StartFormXObject(const PDFRectangle& inBounding
 }
 
 
-PDFFormXObject* DocumentContext::StartFormXObject(const PDFRectangle& inBoundingBox,const double* inMatrix)
+PDFFormXObject* DocumentContext::StartFormXObject(const PDFRect& inBoundingBox,const double* inMatrix)
 {
 	ObjectIDType formXObjectID = mObjectsContext->GetInDirectObjectsRegistry().AllocateNewObjectID();
 	return StartFormXObject(inBoundingBox,formXObjectID,inMatrix);
@@ -1278,7 +1278,7 @@ EStatusCodeAndObjectIDTypeList DocumentContext::CreateFormXObjectsFromPDF(const 
 
 EStatusCodeAndObjectIDTypeList DocumentContext::CreateFormXObjectsFromPDF(const std::string& inPDFFilePath,
 																			const PDFPageRange& inPageRange,
-																			const PDFRectangle& inCropBox,
+																			const PDFRect& inCropBox,
 																			const double* inTransformationMatrix,
 																			const ObjectIDTypeList& inCopyAdditionalObjects)
 {
@@ -1764,7 +1764,7 @@ PDFDocumentCopyingContext* DocumentContext::CreatePDFCopyingContext(const std::s
 		return context;
 }
 
-EStatusCode DocumentContext::AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRectangle& inLinkClickArea)
+EStatusCode DocumentContext::AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRect& inLinkClickArea)
 {
 	EStatusCodeAndObjectIDType writeResult = WriteAnnotationAndLinkForURL(inURL,inLinkClickArea);
 
@@ -1785,7 +1785,7 @@ static const std::string scBS = "BS";
 static const std::string scAction = "Action";
 static const std::string scS = "S";
 static const std::string scURI = "URI";
-EStatusCodeAndObjectIDType DocumentContext::WriteAnnotationAndLinkForURL(const std::string& inURL,const PDFRectangle& inLinkClickArea)
+EStatusCodeAndObjectIDType DocumentContext::WriteAnnotationAndLinkForURL(const std::string& inURL,const PDFRect& inLinkClickArea)
 {
 	EStatusCodeAndObjectIDType result(PDFHummus::eFailure,0);
 
@@ -1901,7 +1901,7 @@ EStatusCodeAndObjectIDTypeList DocumentContext::CreateFormXObjectsFromPDF(IByteR
 
 EStatusCodeAndObjectIDTypeList DocumentContext::CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 																	const PDFPageRange& inPageRange,
-																	const PDFRectangle& inCropBox,
+																	const PDFRect& inCropBox,
 																	const double* inTransformationMatrix,
 																	const ObjectIDTypeList& inCopyAdditionalObjects)
 {

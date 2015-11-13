@@ -59,7 +59,7 @@ EStatusCode HighLevelImages::Run(const TestConfiguration& inTestConfiguration)
 		}
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 		
 		PageContentContext* cxt = pdfWriter.StartPageContentContext(page);
 
@@ -85,7 +85,7 @@ EStatusCode HighLevelImages::Run(const TestConfiguration& inTestConfiguration)
 		}
 
 		page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 		cxt = pdfWriter.StartPageContentContext(page);
 
 		AbstractContentContext::ImageOptions opt1;

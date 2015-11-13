@@ -59,21 +59,21 @@ public:
     bool operator!();
     
     unsigned int GetRotate();
-    PDFRectangle GetMediaBox();
-    PDFRectangle GetCropBox();
-    PDFRectangle GetTrimBox();
-    PDFRectangle GetBleedBox();
-    PDFRectangle GetArtBox();
+    PDFRect GetMediaBox();
+    PDFRect GetCropBox();
+    PDFRect GetTrimBox();
+    PDFRect GetBleedBox();
+    PDFRect GetArtBox();
     
 private:
     PDFParser* mParser;
     PDFObjectCastPtr<PDFDictionary> mPageObject;
     
 	PDFObject* QueryInheritedValue(PDFDictionary* inDictionary,const std::string& inName);
-    void SetPDFRectangleFromPDFArray(PDFArray* inPDFArray,PDFRectangle& outPDFRectangle);
+    void SetPDFRectangleFromPDFArray(PDFArray* inPDFArray,PDFRect& outPDFRect);
     
     void AssertPageObjectValid();
-    PDFRectangle GetBoxAndDefaultWithCrop(const std::string& inBoxName);
+    PDFRect GetBoxAndDefaultWithCrop(const std::string& inBoxName);
 
 
 };

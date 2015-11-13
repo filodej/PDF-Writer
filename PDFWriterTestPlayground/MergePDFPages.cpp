@@ -116,7 +116,7 @@ EStatusCode MergePDFPages::TestOnlyMerge(const TestConfiguration& inTestConfigur
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PDFPageRange singePageRange;
 		singePageRange.mType = PDFPageRange::eRangeTypeSpecific;
@@ -152,7 +152,7 @@ EStatusCode MergePDFPages::TestPrefixGraphicsMerge(const TestConfiguration& inTe
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PDFUsedFont* font = pdfWriter.GetFontForFile(
                         RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/fonts/arial.ttf"));
@@ -212,7 +212,7 @@ EStatusCode MergePDFPages::TestSuffixGraphicsMerge(const TestConfiguration& inTe
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PDFPageRange singePageRange;
 		singePageRange.mType = PDFPageRange::eRangeTypeSpecific;
@@ -269,7 +269,7 @@ EStatusCode MergePDFPages::TestBothGraphicsMerge(const TestConfiguration& inTest
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PDFUsedFont* font = pdfWriter.GetFontForFile(RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/fonts/arial.ttf"));
 		if(!font)
@@ -338,7 +338,7 @@ EStatusCode MergePDFPages::MergeTwoPageInSeparatePhases(const TestConfiguration&
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContent = pdfWriter.StartPageContentContext(page);
 
@@ -430,7 +430,7 @@ EStatusCode MergePDFPages::MergeTwoPageWithEvents(const TestConfiguration& inTes
 			break;
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContent = pdfWriter.StartPageContentContext(page);
 
@@ -504,7 +504,7 @@ EStatusCode MergePDFPages::MergePagesUsingCopyingContext(const TestConfiguration
 		// now let's begin constructing the pages
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContent = pdfWriter.StartPageContentContext(page);
 
@@ -537,7 +537,7 @@ EStatusCode MergePDFPages::MergePagesUsingCopyingContext(const TestConfiguration
 		// now let's do the second page. similar, but with the second page as the unique content
 
 		page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		pageContent = pdfWriter.StartPageContentContext(page);
 

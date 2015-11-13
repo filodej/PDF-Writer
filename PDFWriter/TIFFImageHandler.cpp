@@ -3196,7 +3196,7 @@ PDFFormXObject* TIFFImageHandler::WriteImagesFormXObject(const PDFImageXObjectLi
 	ttile_t i=0;
 	T2P_BOX box;
 	PDFFormXObject* xobjectForm = mContainerDocumentContext->StartFormXObject(
-																	PDFRectangle(
+																	PDFRect(
 																		mT2p->pdf_mediabox.x1,
 																		mT2p->pdf_mediabox.y1,
 																		mT2p->pdf_mediabox.x2,

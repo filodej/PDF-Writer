@@ -346,7 +346,7 @@ PDFFormXObject* JPEGImageHandler::CreateImageFormXObjectFromImageXObject(PDFImag
 
 		DoubleAndDoublePair dimensions = GetImageDimensions(inJPGImageInformation);
 
-		formXObject = mDocumentContext->StartFormXObject(PDFRectangle(0,0,dimensions.first,dimensions.second),inFormXObjectID);
+		formXObject = mDocumentContext->StartFormXObject(PDFRect(0,0,dimensions.first,dimensions.second),inFormXObjectID);
 		XObjectContentContext* xobjectContentContext = formXObject->GetContentContext();
 
 		xobjectContentContext->q();

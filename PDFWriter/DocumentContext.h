@@ -54,7 +54,7 @@ class PageContentContext;
 class ResourcesDictionary;
 class PDFFormXObject;
 class PDFTiledPattern;
-class PDFRectangle;
+class PDFRect;
 class PDFImageXObject;
 class PDFUsedFont;
 class PageContentContext;
@@ -150,8 +150,8 @@ namespace PDFHummus
 		void RegisterAnnotationReferenceForNextPageWrite(ObjectIDType inAnnotationReference);
 
 		// Form XObject creation and finalization
-		PDFFormXObject* StartFormXObject(const PDFRectangle& inBoundingBox,const double* inMatrix = NULL);
-		PDFFormXObject* StartFormXObject(const PDFRectangle& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix = NULL);
+		PDFFormXObject* StartFormXObject(const PDFRect& inBoundingBox,const double* inMatrix = NULL);
+		PDFFormXObject* StartFormXObject(const PDFRect& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix = NULL);
 		PDFHummus::EStatusCode EndFormXObject(PDFFormXObject* inFormXObject);
 		PDFHummus::EStatusCode EndFormXObjectAndRelease(PDFFormXObject* inFormXObject);
 
@@ -162,13 +162,13 @@ namespace PDFHummus
 		PDFTiledPattern* StartTiledPattern(
 											int inPaintType,
 											int inTilingType,
-											const PDFRectangle& inBoundingBox,
+											const PDFRect& inBoundingBox,
 											double inXStep,
 											double inYStep,
 											const double* inMatrix = NULL);
 		PDFTiledPattern* StartTiledPattern(int inPaintType,
 											int inTilingType,
-											const PDFRectangle& inBoundingBox,
+											const PDFRect& inBoundingBox,
 											double inXStep,
 											double inYStep,
 											ObjectIDType inObjectID,
@@ -226,13 +226,13 @@ namespace PDFHummus
 		// CreateFormXObjectsFromPDF is an override to allow you to determine a custom crop for the page embed
 		EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF(const std::string& inPDFFilePath,
 																 const PDFPageRange& inPageRange,
-																 const PDFRectangle& inCropBox,
+																 const PDFRect& inCropBox,
 																 const double* inTransformationMatrix = NULL,
 																 const ObjectIDTypeList& inCopyAdditionalObjects = ObjectIDTypeList());
 
 		EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 																 const PDFPageRange& inPageRange,
-																 const PDFRectangle& inCropBox,
+																 const PDFRect& inCropBox,
 																 const double* inTransformationMatrix = NULL,
 																 const ObjectIDTypeList& inCopyAdditionalObjects = ObjectIDTypeList());
 
@@ -272,7 +272,7 @@ namespace PDFHummus
 		PDFUsedFont* GetFontForFile(const std::string& inFontFilePath,const std::string& inAdditionalMeticsFilePath,long inFontIndex);
 
 		// URL should be encoded to be a valid URL, ain't gonna be checking that!
-		PDFHummus::EStatusCode AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRectangle& inLinkClickArea);
+		PDFHummus::EStatusCode AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRect& inLinkClickArea);
 
 		// Extensibility
 		void AddDocumentContextExtender(IDocumentContextExtender* inExtender);
@@ -376,7 +376,7 @@ namespace PDFHummus
                                                        MapIterator<ObjectIDTypeToStringMap> inMapping);
 		bool IsIdentityMatrix(const double* inMatrix);
 		PDFHummus::EStatusCode WriteUsedFontsDefinitions(bool inEmbedFonts);
-		EStatusCodeAndObjectIDType WriteAnnotationAndLinkForURL(const std::string& inURL,const PDFRectangle& inLinkClickArea);
+		EStatusCodeAndObjectIDType WriteAnnotationAndLinkForURL(const std::string& inURL,const PDFRect& inLinkClickArea);
 
 		void WriteTrailerState(ObjectsContext* inStateWriter,ObjectIDType inObjectID);
         void WriteReferenceState(ObjectsContext* inStateWriter,

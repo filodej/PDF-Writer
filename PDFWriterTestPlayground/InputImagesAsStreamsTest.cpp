@@ -39,7 +39,7 @@ EStatusCode InputImagesAsStreamsTest::Run(const TestConfiguration& inTestConfigu
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		// JPG image
 
@@ -94,7 +94,7 @@ EStatusCode InputImagesAsStreamsTest::Run(const TestConfiguration& inTestConfigu
 		// TIFF image
 #ifndef PDFHUMMUS_NO_TIFF
 		page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		InputFile tiffFile;
 		status = tiffFile.OpenFile(RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/images/tiff/FLAG_T24.TIF"));

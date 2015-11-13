@@ -197,12 +197,12 @@ EStatusCode PDFWriter::EndPageContentContext(PageContentContext* inPageContext)
 	return mDocumentContext.EndPageContentContext(inPageContext);
 }
 
-PDFFormXObject* PDFWriter::StartFormXObject(const PDFRectangle& inBoundingBox,const double* inMatrix)
+PDFFormXObject* PDFWriter::StartFormXObject(const PDFRect& inBoundingBox,const double* inMatrix)
 {
 	return mDocumentContext.StartFormXObject(inBoundingBox,inMatrix);
 }
 
-PDFFormXObject* PDFWriter::StartFormXObject(const PDFRectangle& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix)
+PDFFormXObject* PDFWriter::StartFormXObject(const PDFRect& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix)
 {
 	return mDocumentContext.StartFormXObject(inBoundingBox,inFormXObjectID,inMatrix);
 }
@@ -289,7 +289,7 @@ EStatusCodeAndObjectIDTypeList PDFWriter::CreateFormXObjectsFromPDF(const std::s
 
 EStatusCodeAndObjectIDTypeList PDFWriter::CreateFormXObjectsFromPDF(const std::string& inPDFFilePath,
 																	 const PDFPageRange& inPageRange,
-																	 const PDFRectangle& inCropBox,
+																	 const PDFRect& inCropBox,
 																	 const double* inTransformationMatrix,
 																	 const ObjectIDTypeList& inCopyAdditionalObjects)
 {
@@ -486,7 +486,7 @@ PDFDocumentCopyingContext* PDFWriter::CreatePDFCopyingContext(const std::string&
 	return mDocumentContext.CreatePDFCopyingContext(inPDFFilePath);
 }
 
-EStatusCode PDFWriter::AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRectangle& inLinkClickArea)
+EStatusCode PDFWriter::AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRect& inLinkClickArea)
 {
 	return mDocumentContext.AttachURLLinktoCurrentPage(inURL,inLinkClickArea);
 }
@@ -561,7 +561,7 @@ EStatusCodeAndObjectIDTypeList PDFWriter::CreateFormXObjectsFromPDF(IByteReaderW
 
 EStatusCodeAndObjectIDTypeList PDFWriter::CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 																	const PDFPageRange& inPageRange,
-																	const PDFRectangle& inCropBox,
+																	const PDFRect& inCropBox,
 																	const double* inTransformationMatrix,
 																	const ObjectIDTypeList& inCopyAdditionalObjects)
 {

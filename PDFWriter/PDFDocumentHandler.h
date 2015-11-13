@@ -99,13 +99,13 @@ public:
 
 	EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF( const std::string& inPDFFilePath,
 																const PDFPageRange& inPageRange,
-																const PDFRectangle& inCropBox,
+																const PDFRect& inCropBox,
 																const double* inTransformationMatrix,
 																const ObjectIDTypeList& inCopyAdditionalObjects);
 
 	EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 															 const PDFPageRange& inPageRange,
-															 const PDFRectangle& inCropBox,
+															 const PDFRect& inCropBox,
 															 const double* inTransformationMatrix,
 															 const ObjectIDTypeList& inCopyAdditionalObjects);
 	
@@ -150,7 +150,7 @@ public:
 														 EPDFPageBox inPageBoxToUseAsFormBox,
 														 const double* inTransformationMatrix);
 	EStatusCodeAndObjectIDType CreateFormXObjectFromPDFPage(unsigned long inPageIndex,
-														 const PDFRectangle& inCropBox,
+														 const PDFRect& inCropBox,
 														 const double* inTransformationMatrix);
 	EStatusCodeAndObjectIDType AppendPDFPageFromPDF(unsigned long inPageIndex);
 	PDFHummus::EStatusCode MergePDFPageToPage(PDFPage* inTargetPage,unsigned long inSourcePageIndex);
@@ -171,7 +171,7 @@ public:
 												EPDFPageBox inPageBoxToUseAsFormBox,
 												const double* inTransformationMatrix);
 	PDFFormXObject* CreatePDFFormXObjectForPage(unsigned long inPageIndex,
-												const PDFRectangle& inCropBox,
+												const PDFRect& inCropBox,
 												const double* inTransformationMatrix);
     void RegisterFormRelatedObjects(PDFFormXObject* inFormXObject,const ObjectIDTypeList& inObjectsToWrite);
 
@@ -192,7 +192,7 @@ private:
 	PDFDictionary* mWrittenPage;
 
 
-	PDFRectangle DeterminePageBox(PDFDictionary* inDictionary,EPDFPageBox inPageBoxType);
+	PDFRect DeterminePageBox(PDFDictionary* inDictionary,EPDFPageBox inPageBoxType);
 	PDFHummus::EStatusCode WritePageContentToSingleStream(IByteWriter* inTargetStream,PDFDictionary* inPageObject);
 	PDFHummus::EStatusCode WritePDFStreamInputToStream(IByteWriter* inTargetStream,PDFStreamInput* inSourceStream);
 	PDFHummus::EStatusCode CopyResourcesIndirectObjects(PDFDictionary* inPage);
@@ -210,7 +210,7 @@ private:
 															const double* inTransformationMatrix,
 															const ObjectIDTypeList& inCopyAdditionalObjects);
 	PDFFormXObject* CreatePDFFormXObjectForPage(PDFDictionary* inPageObject,
-												const PDFRectangle& inCropBox,
+												const PDFRect& inCropBox,
 												const double* inTransformationMatrix);
 	PDFHummus::EStatusCode CopyInDirectObject(ObjectIDType inSourceObjectID,ObjectIDType inTargetObjectID);
 

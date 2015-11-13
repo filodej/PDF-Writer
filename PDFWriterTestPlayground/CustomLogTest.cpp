@@ -50,7 +50,7 @@ EStatusCode CustomLogTest::Run(const TestConfiguration& inTestConfiguration)
 		TRACE_LOG("Now will add an empty page");
 		PDFPage* page = new PDFPage();
 
-		page->SetMediaBox(PDFRectangle(0,0,400,400));
+		page->SetMediaBox(PDFRect(0,0,400,400));
 		
 		status = pdfWriter.WritePageAndRelease(page);
 		if(status != PDFHummus::eSuccess)

@@ -120,7 +120,7 @@ void DictionaryContext::WriteNameValue(const std::string& inValue)
 	mObjectsContext->WriteName(inValue,eTokenSeparatorEndLine);	
 }
 
-void DictionaryContext::WriteRectangleValue(const PDFRectangle& inRectangle)
+void DictionaryContext::WriteRectangleValue(const PDFRect& inRectangle)
 {
 	mObjectsContext->StartArray();
 	mObjectsContext->WriteDouble(inRectangle.LowerLeftX);

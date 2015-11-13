@@ -67,7 +67,7 @@ public:
 															 EPDFPageBox inPageBoxToUseAsFormBox,
 															 const double* inTransformationMatrix = NULL);
 	EStatusCodeAndObjectIDType CreateFormXObjectFromPDFPage(unsigned long inPageIndex,
-															 const PDFRectangle& inCropBox,
+															 const PDFRect& inCropBox,
 															 const double* inTransformationMatrix = NULL);
 	EStatusCodeAndObjectIDType AppendPDFPageFromPDF(unsigned long inPageIndex);
 	PDFHummus::EStatusCode MergePDFPageToPage(PDFPage* inTargetPage,unsigned long inSourcePageIndex);

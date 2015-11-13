@@ -137,8 +137,8 @@ public:
 
 
 	// Form XObject creating and writing
-	PDFFormXObject* StartFormXObject(const PDFRectangle& inBoundingBox,const double* inMatrix = NULL);
-	PDFFormXObject* StartFormXObject(const PDFRectangle& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix = NULL);
+	PDFFormXObject* StartFormXObject(const PDFRect& inBoundingBox,const double* inMatrix = NULL);
+	PDFFormXObject* StartFormXObject(const PDFRect& inBoundingBox,ObjectIDType inFormXObjectID,const double* inMatrix = NULL);
     PDFHummus::EStatusCode EndFormXObject(PDFFormXObject* inFormXObject);
 	PDFHummus::EStatusCode EndFormXObjectAndRelease(PDFFormXObject* inFormXObject);
 
@@ -196,13 +196,13 @@ public:
 	// CreateFormXObjectsFromPDF is an override to allow you to determine a custom crop for the page embed
 	EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF(const std::string& inPDFFilePath,
 															 const PDFPageRange& inPageRange,
-															 const PDFRectangle& inCropBox,
+															 const PDFRect& inCropBox,
 															 const double* inTransformationMatrix = NULL,
 															 const ObjectIDTypeList& inCopyAdditionalObjects = ObjectIDTypeList());
 
 	EStatusCodeAndObjectIDTypeList CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 															 const PDFPageRange& inPageRange,
-															 const PDFRectangle& inCropBox,
+															 const PDFRect& inCropBox,
 															 const double* inTransformationMatrix = NULL,
 															 const ObjectIDTypeList& inCopyAdditionalObjects = ObjectIDTypeList());
 
@@ -248,7 +248,7 @@ public:
 
 	// URL links
 	// URL should be encoded to be a valid URL, ain't gonna be checking that!
-	PDFHummus::EStatusCode AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRectangle& inLinkClickArea);
+	PDFHummus::EStatusCode AttachURLLinktoCurrentPage(const std::string& inURL,const PDFRect& inLinkClickArea);
 
 	// Extensibility, reaching to lower levels
 	PDFHummus::DocumentContext& GetDocumentContext();

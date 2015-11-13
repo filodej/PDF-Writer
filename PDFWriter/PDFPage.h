@@ -28,7 +28,7 @@
 #include <list>
 #include <utility>
 
-typedef std::pair<bool,PDFRectangle> BoolAndPDFRectangle;
+typedef std::pair<bool,PDFRect> BoolAndPDFRectangle;
 typedef std::pair<bool,unsigned int> BoolAndUnsignedInt;
 
 class PageContentContext;
@@ -41,8 +41,8 @@ public:
 	PDFPage(void);
 	~PDFPage(void);
 
-	void SetMediaBox(const PDFRectangle& inMediaBox);
-	const PDFRectangle& GetMediaBox() const;
+	void SetMediaBox(const PDFRect& inMediaBox);
+	const PDFRect& GetMediaBox() const;
     
 	// sets page rotation factor (optional, must be multiple of 90)
 	void SetRotate( unsigned int inRotate );
@@ -54,19 +54,19 @@ public:
     // trim box, defaults to crop box
     // art box, default to crop box
 
-	void SetCropBox(const PDFRectangle& inCropBox);
+	void SetCropBox(const PDFRect& inCropBox);
     // returns indicator for wheather crop was set, and its value
 	const BoolAndPDFRectangle& GetCropBox() const;
 
-	void SetBleedBox(const PDFRectangle& inBleedBox);
+	void SetBleedBox(const PDFRect& inBleedBox);
     // returns indicator for wheather crop was set, and its value
 	const BoolAndPDFRectangle& GetBleedBox() const;
     
-	void SetTrimBox(const PDFRectangle& inTrimBox);
+	void SetTrimBox(const PDFRect& inTrimBox);
     // returns indicator for wheather crop was set, and its value
 	const BoolAndPDFRectangle& GetTrimBox() const;
 
-	void SetArtBox(const PDFRectangle& inArtBox);
+	void SetArtBox(const PDFRect& inArtBox);
     // returns indicator for wheather crop was set, and its value
 	const BoolAndPDFRectangle& GetArtBox() const;
     
@@ -82,7 +82,7 @@ public:
 	void AssociateContentContext(PageContentContext* inContentContext);
 
 private:
-	PDFRectangle mMediaBox;
+	PDFRect mMediaBox;
 	BoolAndUnsignedInt mRotate;
     BoolAndPDFRectangle mTrimBox;
     BoolAndPDFRectangle mArtBox;

@@ -20,7 +20,7 @@
 */
 #include "PDFRectangle.h"
 
-PDFRectangle::PDFRectangle(void)
+PDFRect::PDFRect(void)
 {
 	LowerLeftX = 0;
 	LowerLeftY = 0;
@@ -28,11 +28,11 @@ PDFRectangle::PDFRectangle(void)
 	UpperRightY = 0;
 }
 
-PDFRectangle::~PDFRectangle(void)
+PDFRect::~PDFRect(void)
 {
 }
 
-PDFRectangle::PDFRectangle(double inLowerLeftX, double inLowerLeftY, double inUpperRightX, double inUpperRightY)
+PDFRect::PDFRect(double inLowerLeftX, double inLowerLeftY, double inUpperRightX, double inUpperRightY)
 {
 	LowerLeftX = inLowerLeftX;
 	LowerLeftY = inLowerLeftY;
@@ -40,7 +40,7 @@ PDFRectangle::PDFRectangle(double inLowerLeftX, double inLowerLeftY, double inUp
 	UpperRightY = inUpperRightY;
 }
 
-PDFRectangle::PDFRectangle(const PDFRectangle& inOther)
+PDFRect::PDFRect(const PDFRect& inOther)
 {
 	LowerLeftX = inOther.LowerLeftX;
 	LowerLeftY = inOther.LowerLeftY;
@@ -48,7 +48,7 @@ PDFRectangle::PDFRectangle(const PDFRectangle& inOther)
 	UpperRightY = inOther.UpperRightY;
 }
 
-bool PDFRectangle::operator==(const PDFRectangle& inOther) const
+bool PDFRect::operator==(const PDFRect& inOther) const
 {
     return  LowerLeftX == inOther.LowerLeftX &&
             LowerLeftY == inOther.LowerLeftY &&
@@ -56,7 +56,7 @@ bool PDFRectangle::operator==(const PDFRectangle& inOther) const
             UpperRightY == inOther.UpperRightY;    
 }
 
-bool PDFRectangle::operator!=(const PDFRectangle& inOther) const
+bool PDFRect::operator!=(const PDFRect& inOther) const
 {
     return  LowerLeftX != inOther.LowerLeftX ||
             LowerLeftY != inOther.LowerLeftY ||

@@ -49,8 +49,8 @@ void Trace::SetLogSettings(const std::string& inLogFilePath,bool inShouldLog,boo
 	{
 		delete mLog;
 		mLog = NULL;
-		//if(mShouldLog)
-		//	mLog = new Log(mLogFilePath,inPlaceUTF8Bom);
+		if(mShouldLog)
+			mLog = new Log(mLogFilePath,inPlaceUTF8Bom);
 	}
 }
 

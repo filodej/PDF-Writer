@@ -57,7 +57,7 @@ EStatusCode SimpleContentPageTest::Run(const TestConfiguration& inTestConfigurat
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == contentContext)

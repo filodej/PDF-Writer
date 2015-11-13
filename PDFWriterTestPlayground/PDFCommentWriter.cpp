@@ -83,7 +83,7 @@ EStatusCodeAndObjectIDType PDFCommentWriter::WriteCommentsTree(PDFComment* inCom
 		// Rect
 		dictionaryContext->WriteKey("Rect");
 		dictionaryContext->WriteRectangleValue(
-			PDFRectangle(inComment->FrameBoundings[0],
+			PDFRect(inComment->FrameBoundings[0],
 						 inComment->FrameBoundings[1],
 						 inComment->FrameBoundings[2],
 						 inComment->FrameBoundings[3]));

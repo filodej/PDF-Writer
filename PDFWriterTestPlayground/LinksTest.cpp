@@ -52,7 +52,7 @@ EStatusCode LinksTest::Run(const TestConfiguration& inTestConfiguration)
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PDFFormXObject* soundCloudLogo = pdfWriter.CreateFormXObjectFromJPGFile(
                                                 RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/Images/soundcloud_logo.jpg"));
@@ -104,10 +104,10 @@ EStatusCode LinksTest::Run(const TestConfiguration& inTestConfiguration)
 		// now let's attach some links.
 
 		// first, the link for the test:
-		pdfWriter.AttachURLLinktoCurrentPage("http://www.pdfhummus.com",PDFRectangle(87.75,694.56,198.76,720));
+		pdfWriter.AttachURLLinktoCurrentPage("http://www.pdfhummus.com",PDFRect(87.75,694.56,198.76,720));
 
 		// second, link for the logo.
-		pdfWriter.AttachURLLinktoCurrentPage("http://www.soundcloud.com",PDFRectangle(90.024,200,367.524,375));
+		pdfWriter.AttachURLLinktoCurrentPage("http://www.soundcloud.com",PDFRect(90.024,200,367.524,375));
 
 		status = pdfWriter.WritePageAndRelease(page);
 		if(status != PDFHummus::eSuccess)

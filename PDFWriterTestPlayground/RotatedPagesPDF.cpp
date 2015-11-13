@@ -70,7 +70,7 @@ EStatusCode RotatedPagesPDF::Run(const TestConfiguration& inTestConfiguration)
 		for(int i=0;i<6 && PDFHummus::eSuccess == status;++i)
 		{
 			PDFPage page;
-			page.SetMediaBox(PDFRectangle(0,0,595,842));
+			page.SetMediaBox(PDFRect(0,0,595,842));
 
 			page.SetRotate(33);
 			if ( page.GetRotate().second != 0 )

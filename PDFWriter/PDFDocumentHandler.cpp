@@ -83,7 +83,7 @@ public:
 class PageEmbedInFormWithCropBox: public IPageEmbedInFormCommand
 {
 public:
-	PageEmbedInFormWithCropBox(const PDFRectangle& inCropBox)
+	PageEmbedInFormWithCropBox(const PDFRect& inCropBox)
 	{
 		mCropBox = inCropBox;
 	}
@@ -94,7 +94,7 @@ public:
 	}
 
 private:
-	PDFRectangle mCropBox;
+	PDFRect mCropBox;
 
 };
 
@@ -243,7 +243,7 @@ EStatusCodeAndObjectIDTypeList PDFDocumentHandler::CreateFormXObjectsFromPDF(	co
 
 EStatusCodeAndObjectIDTypeList PDFDocumentHandler::CreateFormXObjectsFromPDF(	const std::string& inPDFFilePath,
 																				const PDFPageRange& inPageRange,
-																				const PDFRectangle& inCropBox,
+																				const PDFRect& inCropBox,
 																				const double* inTransformationMatrix,
 																				const ObjectIDTypeList& inCopyAdditionalObjects)
 {
@@ -267,7 +267,7 @@ PDFFormXObject* PDFDocumentHandler::CreatePDFFormXObjectForPage(unsigned long in
 }
 
 PDFFormXObject* PDFDocumentHandler::CreatePDFFormXObjectForPage(PDFDictionary* inPageObject,
-																const PDFRectangle& inFormBox,
+																const PDFRect& inFormBox,
 																const double* inTransformationMatrix)
 {
 	PDFFormXObject* result = NULL;
@@ -337,9 +337,9 @@ PDFFormXObject* PDFDocumentHandler::CreatePDFFormXObjectForPage(PDFDictionary* i
 		return result;
 }
 
-PDFRectangle PDFDocumentHandler::DeterminePageBox(PDFDictionary* inDictionary,EPDFPageBox inPageBoxType)
+PDFRect PDFDocumentHandler::DeterminePageBox(PDFDictionary* inDictionary,EPDFPageBox inPageBoxType)
 {
-	PDFRectangle result;
+	PDFRect result;
     inDictionary->AddRef();
     PDFPageInput pageInput(mParser,inDictionary);
 
@@ -373,7 +373,7 @@ PDFRectangle PDFDocumentHandler::DeterminePageBox(PDFDictionary* inDictionary,EP
 }
 
 PDFFormXObject* PDFDocumentHandler::CreatePDFFormXObjectForPage(unsigned long inPageIndex,
-																const PDFRectangle& inCropBox,
+																const PDFRect& inCropBox,
 																const double* inTransformationMatrix)
 {
 	RefCountPtr<PDFDictionary> pageObject = mParser->ParsePage(inPageIndex);
@@ -1219,7 +1219,7 @@ EStatusCodeAndObjectIDType PDFDocumentHandler::CreateFormXObjectFromPDFPage(unsi
 }
 
 EStatusCodeAndObjectIDType PDFDocumentHandler::CreateFormXObjectFromPDFPage(unsigned long inPageIndex,
-																			 const PDFRectangle& inCropBox,
+																			 const PDFRect& inCropBox,
 																			 const double* inTransformationMatrix)
 {
 	EStatusCodeAndObjectIDType result;
@@ -1930,7 +1930,7 @@ EStatusCodeAndObjectIDTypeList PDFDocumentHandler::CreateFormXObjectsFromPDF(IBy
 
 EStatusCodeAndObjectIDTypeList PDFDocumentHandler::CreateFormXObjectsFromPDF(IByteReaderWithPosition* inPDFStream,
 																			const PDFPageRange& inPageRange,
-																			const PDFRectangle& inCropBox,
+																			const PDFRect& inCropBox,
 																			const double* inTransformationMatrix,
 																			const ObjectIDTypeList& inCopyAdditionalObjects)
 {

@@ -57,7 +57,7 @@ EStatusCode ShutDownRestartTest::Run(const TestConfiguration& inTestConfiguratio
 			}	
 
 			PDFPage* page = new PDFPage();
-			page->SetMediaBox(PDFRectangle(0,0,595,842));
+			page->SetMediaBox(PDFRect(0,0,595,842));
 
 			PDFUsedFont* font = pdfWriterA.GetFontForFile(RelativeURLToLocalPath(inTestConfiguration.mSampleFileBase,"TestMaterials/fonts/arial.ttf"));
 			if(!font)
@@ -155,7 +155,7 @@ EStatusCode ShutDownRestartTest::Run(const TestConfiguration& inTestConfiguratio
 			}	
 
 			PDFPage* page = new PDFPage();
-			page->SetMediaBox(PDFRectangle(0,0,595,842));
+			page->SetMediaBox(PDFRect(0,0,595,842));
 
 			PageContentContext* pageContentContext = pdfWriterB.StartPageContentContext(page);
 			if(NULL == pageContentContext)
@@ -180,7 +180,7 @@ EStatusCode ShutDownRestartTest::Run(const TestConfiguration& inTestConfiguratio
 			}
 
 			// define an xobject form to draw a 200X100 points red rectangle
-			PDFFormXObject* xobjectForm = pdfWriterB.StartFormXObject(PDFRectangle(0,0,200,100));
+			PDFFormXObject* xobjectForm = pdfWriterB.StartFormXObject(PDFRect(0,0,200,100));
 			ObjectIDType formObjectID = xobjectForm->GetObjectID();
 
 			XObjectContentContext* xobjectContentContext = xobjectForm->GetContentContext();

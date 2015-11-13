@@ -36,12 +36,12 @@ PDFPage::~PDFPage(void)
 }
 
 
-void PDFPage::SetMediaBox(const PDFRectangle& inMediaBox)
+void PDFPage::SetMediaBox(const PDFRect& inMediaBox)
 {
 	mMediaBox = inMediaBox;
 }
 
-const PDFRectangle& PDFPage::GetMediaBox() const
+const PDFRect& PDFPage::GetMediaBox() const
 {
 	return mMediaBox;
 }
@@ -97,7 +97,7 @@ void PDFPage::AssociateContentContext(PageContentContext* inContentContext)
 	mContentContext = inContentContext;
 }
 
-void PDFPage::SetCropBox(const PDFRectangle& inCropBox)
+void PDFPage::SetCropBox(const PDFRect& inCropBox)
 {
     mCropBox.first = true;
     mCropBox.second = inCropBox;
@@ -108,7 +108,7 @@ const BoolAndPDFRectangle& PDFPage::GetCropBox() const
     return mCropBox;
 }
 
-void PDFPage::SetBleedBox(const PDFRectangle& inBleedBox)
+void PDFPage::SetBleedBox(const PDFRect& inBleedBox)
 {
     mBleedBox.first = true;
     mBleedBox.second = inBleedBox;
@@ -119,7 +119,7 @@ const BoolAndPDFRectangle& PDFPage::GetBleedBox() const
     return mBleedBox;
 }
 
-void PDFPage::SetTrimBox(const PDFRectangle& inTrimBox)
+void PDFPage::SetTrimBox(const PDFRect& inTrimBox)
 {
     mTrimBox.first = true;
     mTrimBox.second = inTrimBox;
@@ -130,7 +130,7 @@ const BoolAndPDFRectangle& PDFPage::GetTrimBox() const
     return mTrimBox;
 }
 
-void PDFPage::SetArtBox(const PDFRectangle& inArtBox)
+void PDFPage::SetArtBox(const PDFRect& inArtBox)
 {
     mArtBox.first = true;
     mArtBox.second = inArtBox;

@@ -29,6 +29,8 @@
 #include "IPDFPageContentHandler.h"
 #include "Trace.h"
 
+#include <iostream>
+
 // anonymous namespace
 namespace
 {
@@ -144,10 +146,10 @@ namespace
 								std::vector<double>& components, 
 								std::string* resource = NULL )
 	{
-		if ( stack.empty() )
-			return false;
 		if ( resource )
 		{
+			if ( stack.empty() )
+				return false;
 			if ( get_resource( stack.back().c_str(), *resource ) )
 				stack.pop_back();
 			else
@@ -161,7 +163,7 @@ namespace
 			components.push_back( component );
 		}
 		std::reverse( components.begin(), components.end() );
-		return !components.empty();
+		return true;
 	}
 
 	bool pop_string_or_double_list( StackType& stack, StringOrDoubleList& result, bool& hex )
@@ -236,7 +238,7 @@ namespace
 					}
 					break;
 				}
-				//std::cout << token.second << std::endl;
+				std::cout << token.second << std::endl;
 				HandlerTableIterator it = ContentParserImpl::sHandlerTable.find( token.second );
 				if ( it != ContentParserImpl::sHandlerTable.end() )
 				{
@@ -257,7 +259,7 @@ namespace
 				else
 					mStack.push_back( token.second );
 			}
-			//std::cout << "EOS" << std::endl;
+			std::cout << "EOS" << std::endl;
 			return PDFHummus::eSuccess;
 		}
 
@@ -535,8 +537,8 @@ namespace
 				return PDFHummus::eFailure;
 			}
 			return pattern.empty()
-				? mHandler.scn( &components[0], components.size() )
-				: mHandler.scn( &components[0], components.size(), pattern );
+				? mHandler.scn( components.data(), components.size() )
+				: mHandler.scn( components.data(), components.size(), pattern );
 		}
 		PDFHummus::EStatusCode G() 
 		{ 

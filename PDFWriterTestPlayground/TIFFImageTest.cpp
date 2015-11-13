@@ -196,7 +196,7 @@ EStatusCode TIFFImageTest::AddPageForTIFF(PDFWriter& inpdfWriter, const string& 
 
 	do {
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = inpdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)

@@ -55,7 +55,7 @@ EStatusCode FormXObjectTest::Run(const TestConfiguration& inTestConfiguration)
 		}	
 
 		PDFPage* page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		PageContentContext* pageContentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)
@@ -80,7 +80,7 @@ EStatusCode FormXObjectTest::Run(const TestConfiguration& inTestConfiguration)
 		}
 
 		// define an xobject form to draw a 200X100 points red rectangle
-		PDFFormXObject* xobjectForm = pdfWriter.StartFormXObject(PDFRectangle(0,0,200,100));
+		PDFFormXObject* xobjectForm = pdfWriter.StartFormXObject(PDFRect(0,0,200,100));
 		ObjectIDType formObjectID = xobjectForm->GetObjectID();
 
 		XObjectContentContext* xobjectContentContext = xobjectForm->GetContentContext();
@@ -136,7 +136,7 @@ EStatusCode FormXObjectTest::Run(const TestConfiguration& inTestConfiguration)
 	
 		// 2nd page, just uses the form from the previous page
 		page = new PDFPage();
-		page->SetMediaBox(PDFRectangle(0,0,595,842));
+		page->SetMediaBox(PDFRect(0,0,595,842));
 
 		pageContentContext = pdfWriter.StartPageContentContext(page);
 		if(NULL == pageContentContext)

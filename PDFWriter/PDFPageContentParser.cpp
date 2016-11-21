@@ -433,14 +433,12 @@ namespace
 		{ 
 			double phase = 0.0;
 			std::vector<double> segments;
-			if ( !( pop_double( mStack, phase ) 
-					&& pop_double_array( mStack, segments ) 
-					&& !segments.empty() ) )
+			if ( !pop_double( mStack, phase )  || !pop_double_array( mStack, segments ) )
 			{
 				TRACE_LOG("ContentParserImpl::parse, Invalid arguments");
 				return PDFHummus::eFailure;
 			}
-			return mHandler.d( &segments[0], static_cast<int>( segments.size() ), phase );
+			return mHandler.d( segments.data(), static_cast<int>( segments.size() ), phase );
 		}
 		PDFHummus::EStatusCode ri() 
 		{ 
